@@ -8,6 +8,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { HomeComponent } from "./home/home.component";
 import { SobreComponent } from "./sobre/sobre.component";
 import { FaleConoscoComponent } from "./fale-conosco/fale-conosco.component";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { FaleConoscoComponent } from "./fale-conosco/fale-conosco.component";
     SobreComponent,
     FaleConoscoComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

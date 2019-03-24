@@ -1,3 +1,40 @@
-<p>
-  fale-conosco works!
-</p>
+<div class="container">
+  <h1>Fale Conosco</h1>
+
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <h5 *ngIf="success">Formulário Válido!</h5>
+
+    <label>
+      Nome:
+      <input type="text" formControlName="name" />
+      <div *ngIf="submitted && messageForm.controls.name.errors" class="error">
+        <div *ngIf="messageForm.controls.name.errors.required">
+          Precisa digitar o seu nome!
+        </div>
+      </div>
+    </label>
+
+    <label>
+      Mensagem:
+      <textarea formControlName="message"></textarea>
+      <div
+        *ngIf="submitted && messageForm.controls.message.errors"
+        class="error"
+      >
+        <div *ngIf="messageForm.controls.message.errors.required">
+          Precisa digitar uma mensagem!
+        </div>
+      </div>
+    </label>
+
+    <input type="submit" value="Send message" class="cta" />
+  </form>
+
+  <div *ngIf="submitted" class="results">
+    <strong>Nome:</strong>
+    <span>{{ messageForm.controls.name.value }}</span>
+
+    <strong>Menssagem:</strong>
+    <span>{{ messageForm.controls.message.value }}</span>
+  </div>
+</div>
