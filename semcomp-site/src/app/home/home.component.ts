@@ -1,4 +1,6 @@
+import { PessoasService } from "./../api/pessoas.service";
 import { Component, OnInit } from "@angular/core";
+import { log } from "util";
 
 @Component({
   selector: "app-home",
@@ -6,18 +8,22 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./home.component.sass"]
 })
 export class HomeComponent implements OnInit {
-  valor: number;
-  constructor() {}
+  usuarios: any;
+  pagina: number;
+  constructor(protected service: PessoasService) {}
 
   ngOnInit() {
-    this.valor = 0;
+    this.pagina = 0;
+    this.carregarPessoas();
   }
 
-  public adicionar(): void {
-    this.valor++;
-  }
-
-  public diminuir(): void {
-    this.valor--;
+  carregarPessoas() {
+    this.pagina++;
+    this.service.getPessoas(this.pagina).subscribe((data: any) => {
+      this.usuarios = data;
+      if (data.total_pages == this.pagina) {
+        this.pagina = 0;
+      }
+    });
   }
 }

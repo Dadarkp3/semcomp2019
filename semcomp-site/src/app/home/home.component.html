@@ -1,4 +1,12 @@
-<div class="container counter">
-  <button (click)="diminuir()">Diminuir</button>{{ valor }}
-  <button (click)="adicionar()">Adicionar</button>
+<div class="users">
+  <h1>Home</h1>
+  <p>Conheça os nossos usuários!</p>
+  <button (click)="carregarPessoas()">Mais Usuários</button>
+
+  <ul *ngIf="usuarios">
+    <li *ngFor="let usuario of usuarios.data">
+      <img [src]="usuario.avatar" alt="Fotografia" />
+      <p>{{ usuario.first_name }} {{ usuario.last_name }}</p>
+    </li>
+  </ul>
 </div>
